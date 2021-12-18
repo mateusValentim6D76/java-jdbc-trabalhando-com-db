@@ -15,7 +15,7 @@ public class TestaListagem {
 		Connection conn = connectionFactory.recuperarConexao();
 		
 		Statement stm = conn.createStatement();
-		stm.execute("SELECT ID, NOME, DESCRICAO, FROM PRODUTO");
+		stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
 		
 		/*Retorna true se for uma lista, no caso de um SELECT
 		 * Em caso de insert, ou delete ou update retorna false
