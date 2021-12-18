@@ -17,13 +17,13 @@ public class TestaListagem {
 		Statement stm = conn.createStatement();
 		stm.execute("SELECT ID, NOME, DESCRICAO, FROM PRODUTO");
 		
-		/*Retorna true ou false, se a tabela estiver populada retorna true
-		 * Caso esteja vazia, retorna false
+		/*Retorna true se for uma lista, no caso de um SELECT
+		 * Em caso de insert, ou delete ou update retorna false
 		 */
 		ResultSet rst = stm.getResultSet();
 		//Se tiver próximo...
 		while (rst.next()) {
-			//Nome da coluna
+			//Nome e tipo da coluna
 			Integer id = rst.getInt("ID");
 			System.out.println(id);
 			String nome = rst.getString("NOME");
