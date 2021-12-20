@@ -1,6 +1,7 @@
 package br.com.loja.virtual.db.test;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,8 +15,8 @@ public class TestaListagem {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection conn = connectionFactory.recuperarConexao();
 		
-		Statement stm = conn.createStatement();
-		stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+		PreparedStatement stm = conn.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+		stm.execute();
 		
 		/*Retorna true se for uma lista, no caso de um SELECT
 		 * Em caso de insert, ou delete ou update retorna false
