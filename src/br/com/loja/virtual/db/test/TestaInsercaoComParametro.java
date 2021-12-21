@@ -13,21 +13,21 @@ public class TestaInsercaoComParametro {
 	public static void main(String[] args) throws SQLException {
 
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		Connection conn = connectionFactory.recuperarConexao();
-		conn.setAutoCommit(false);
-		try {
-			PreparedStatement stm = conn.prepareStatement("INSERT INTO PRODUTO (nome, descricao) VALUES (?,?)",
-					Statement.RETURN_GENERATED_KEYS);
+		try (Connection conn = connectionFactory.recuperarConexao()) {
+			conn.setAutoCommit(false);
+			try(PreparedStatement stm = conn.prepareStatement("INSERT INTO PRODUTO (nome, descricao) VALUES (?,?)",
+					Statement.RETURN_GENERATED_KEYS)) {
 
-			adicionarVariavel("MP4", "MP4 AZUL", stm);
-			adicionarVariavel("Radio", "Radio AM/FM", stm);
+				adicionarVariavel("TV", "70 POLEGADAS", stm);
+				adicionarVariavel("FOGÃO", "DE OURO", stm);
 
-			conn.commit();
+				conn.commit();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("ROLLBACK EXECUTADO");
-			conn.rollback();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("ROLLBACK EXECUTADO");
+				conn.rollback();
+			}
 		}
 	}
 
