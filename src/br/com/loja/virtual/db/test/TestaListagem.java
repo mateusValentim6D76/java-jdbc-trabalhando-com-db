@@ -18,6 +18,8 @@ public class TestaListagem {
 		PreparedStatement stm = conn.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
 		stm.execute();
 		
+		
+		
 		/*Retorna true se for uma lista, no caso de um SELECT
 		 * Em caso de insert, ou delete ou update retorna false
 		 */
