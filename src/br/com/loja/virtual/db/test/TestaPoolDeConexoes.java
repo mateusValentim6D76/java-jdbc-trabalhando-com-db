@@ -15,6 +15,11 @@ public class TestaPoolDeConexoes {
 			connFactory.recuperarConexao();
 			System.out.println("Conexão de número" + i);
 		}
+		
+		/*
+		 * Para verificar quantas conexões estão abertas no MySql Command Line
+		 * digite: show processlist;
+		 */
 	}
 
 }
