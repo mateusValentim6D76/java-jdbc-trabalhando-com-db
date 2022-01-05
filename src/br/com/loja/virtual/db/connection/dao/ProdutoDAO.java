@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.loja.virtual.db.connection.factory.ConnectionFactory;
 import br.com.loja.virtual.db.connection.model.Produto;
@@ -34,6 +36,24 @@ public class ProdutoDAO {
 					}
 				}
 			}
-		}
+		}	
 	}
+	
+	public List<Produto> listar() throws SQLException{
+		List<Produto> produtos = new ArrayList<Produto>();
+		
+		String sql = "SELECT ID, NOME, DESCRICAO FROM PRODUTO";
+		
+		try(PreparedStatement pstm = conn.prepareStatement(sql)){
+			pstm.execute();
+			
+			try(ResultSet rst = pstm.getResultSet()){
+				while(rst.next()) {
+					Produto produto = new Produto(rst.getInt(1), rst.getString(2), rst.getString(3));
+					
+					produtos.add(produto);
+				}
+			}
+		} return produtos;
+	} 
 }

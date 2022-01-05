@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.mysql.cj.protocol.Resultset;
 
@@ -11,7 +12,7 @@ import br.com.loja.virtual.db.connection.dao.ProdutoDAO;
 import br.com.loja.virtual.db.connection.factory.ConnectionFactory;
 import br.com.loja.virtual.db.connection.model.Produto;
 
-public class TestaInsercaoComProduto {
+public class TestaInsercaoEListagemComProduto {
 
 	public static void main(String[] args) throws SQLException {
 
@@ -20,8 +21,8 @@ public class TestaInsercaoComProduto {
 		try(Connection conn = new ConnectionFactory().recuperarConexao()){
 			ProdutoDAO produtoDao = new ProdutoDAO(conn);
 			produtoDao.salvar(comoda);
+			List<Produto> listaDeProdutos = produtoDao.listar();
+			listaDeProdutos.stream().forEach(lp -> System.out.println(lp));
 		}
-
-		System.out.println(comoda);
 	}
 }
