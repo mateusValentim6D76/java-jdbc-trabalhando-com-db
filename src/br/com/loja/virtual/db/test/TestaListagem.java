@@ -34,7 +34,8 @@ public class TestaListagem {
 			String descricao = rst.getString("DESCRICAO");
 			System.out.println(descricao);
 		}
-		
+		rst.close();
+		stm.close();
 		conn.close();
 	}
 }
